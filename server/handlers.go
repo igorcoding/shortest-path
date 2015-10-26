@@ -124,11 +124,14 @@ func (self *server) apiStep(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-
+	pretty.Println(genomes)
 
 	data := self.makeData()
 	genomesArr := make([](map[string]interface{}), len(genomes))
 	for i := range(genomesArr) {
+		if (genomes[i] == nil) {
+			continue
+		}
 		genomesArr[i] = self.makeData()
 		genomeArr := make([]int, len(genomes[i].Genes))
 		for j := range(genomes[i].Genes) {

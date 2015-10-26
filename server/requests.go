@@ -14,6 +14,7 @@ type ApiConfig struct {
 	CrossoverProb float64    `json:"crossover_prob"`
 	CrossoverSplits int      `json:"crossover_splits"`
 	CrossoversCount int      `json:"crossovers_count"`
+	RemoveDuplicates bool    `json:"remove_duplicates"`
 
 	MutationProb float64     `json:"mutation_prob"`
 }
@@ -55,6 +56,7 @@ func (self *ApiInitRequest) ToGenPathConf() (*genpath.GenPathConf, error) {
 		CrossoverProb: self.Config.CrossoverProb,
 		CrossoverSegmentSplitsCount: self.Config.CrossoverSplits,
 		CrossoversCount: self.Config.CrossoversCount,
+		RemoveDuplicates: self.Config.RemoveDuplicates,
 
 		MutationProb: self.Config.MutationProb,
 

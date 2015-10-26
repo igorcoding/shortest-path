@@ -37,6 +37,7 @@ define(function(require) {
             this.config['mutation_prob'] = parseFloat(this.config['mutation_prob']) || 0;
             this.config['population_size'] = parseInt(this.config['population_size']) || 0;
             this.config['selection_count'] = parseInt(this.config['selection_count']) || 0;
+            this.config['remove_duplicates'] = this.config['remove_duplicates'] || false;
             return this.config;
         },
 

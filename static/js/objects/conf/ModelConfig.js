@@ -23,7 +23,11 @@ define(function(require) {
             var conf = {};
             _.forEach(this.$options, function(option) {
                 var $option = $(option);
-                conf[$option.attr('name')] = $option.val() || 0;
+                var value = $option.val() || 0;
+                if ($option.attr('type') == 'checkbox') {
+                    value = $option.is(":checked");
+                }
+                conf[$option.attr('name')] = value;
             });
             this.config = conf;
             return this.config;
