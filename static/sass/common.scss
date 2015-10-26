@@ -1,0 +1,98 @@
+html, body {
+
+}
+
+.main-container {
+    //background-color: #f7ffa6;
+}
+
+.workplace-window {
+    &__content {
+        margin-top: 20px;
+        overflow-x: auto;
+
+    }
+}
+
+.side-window {
+    border-left: solid #cacaca 1px;
+
+    &__title {
+        font-weight: bolder;
+    }
+
+    &__config {
+
+        &__conf {
+            padding: 0 15px;
+        }
+    }
+}
+
+.field__conf__addbtn {
+    width: 100%;
+}
+
+
+.field-editor {
+    margin-top: 20px;
+}
+
+.field-collection {
+    margin-top: 100px;
+    //background-color: #8ac24a;
+    height: 20px;
+}
+
+.field-card {
+    display: inline-block;
+    border: solid black 1px;
+    border-radius: 10px;
+    margin: 10px 0 0 30px;
+    padding: 40px 20px 20px;
+    position: relative;
+
+    .field__table {
+
+    }
+
+    .field__conf__label {
+        margin: 20px auto;
+    }
+
+    &__remove-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+}
+
+
+.learn-button, .recognize-button, .clear-button {
+    width: 100%;
+}
+
+.page {
+    display: none;
+}
+
+.main-page {
+    display: block;
+}
+
+.report-table-wrapper {
+    width: 100%;
+    overflow: auto;
+    margin-top: 20px;
+}
+
+.report-table {
+
+}
+
+.graph {
+    width: 600px;
+    height: 300px;
+    padding: 20px;
+}

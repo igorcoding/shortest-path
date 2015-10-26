@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/lib/bootstrap-tagsinput.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/lib/alertify.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/lib/alertify.semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/field.css" />
+
+    <title>{{ .__title__ }}</title>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">{{ .__title__ }}</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="main-container col-md-12">
+                <div class="row">
+                    <div class="workplace-window col-md-8">
+                        <ul class="page-switcher nav nav-tabs">
+                            <li role="presentation" class="active"><a href="#" data-page="main">Main</a></li>
+                        </ul>
+
+                        <div class="main-page page">
+                            <div class="row workplace-window__content">
+                                <div class="col-md-8">
+                                    <div class="main-page__field">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <button type="submit" class="init-button btn btn-success">Init</button>
+                                            <button type="submit" class="step-button btn btn-default">Step</button>
+                                            <button type="submit" class="burst-button btn btn-default">Burst</button>
+                                        </div>
+                                    </div>
+                                    <div class="row main-page__genomes">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="side-window col-lg-8 col-lg-offset-2">
+                                <div class="side-window__config model-config">
+                                    <div class="row text-center"><h4 class="side-window__config__title">Model configuration</h4></div>
+                                    <div class="side-window__config__conf row">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <div class="col-lg-8 col-lg-offset-2">
+                                                    <div class="side-window__config__conf__size input-group">
+                                                        <input type="number" class="side-window__config__conf__size__text form-control" placeholder="Size" min="1" max="10">
+                                                <span class="input-group-btn">
+                                                    <button class="side-window__config__conf__size__apply btn btn-info" type="button">Apply size</button>
+                                                </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="config_start_node" class="col-sm-4 control-label">Start node</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control model-option" id="config_start_node" name="start_node" placeholder="Start node">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="config_end_node" class="col-sm-4 control-label">End node</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control model-option" id="config_end_node" name="end_node" placeholder="End node">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="config_population_size" class="col-sm-4 control-label">Population size</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control model-option" id="config_population_size" name="population_size" placeholder="Population size">
+                                                </div>
+                                            </div>
+
+                                            <hr />
+
+                                            <div class="form-group">
+                                                <label for="config_selection_count" class="col-sm-4 control-label">Selection count</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control model-option" id="config_selection_count" name="selection_count" placeholder="Selection count">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="config_crossovers_count" class="col-sm-4 control-label">Crossovers count</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control model-option" id="config_crossovers_count" name="crossovers_count" placeholder="Crossovers count">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="config_crossover_prob" class="col-sm-4 control-label">Crossover probability</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control model-option" id="config_crossover_prob" name="crossover_prob" placeholder="Crossover probability">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="config_crossover_splits" class="col-sm-4 control-label">Crossovers splits count</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control model-option" id="config_crossover_splits" name="crossover_splits" placeholder="Crossovers splits count">
+                                                </div>
+                                            </div>
+
+                                            <hr />
+
+                                            <div class="form-group">
+                                                <label for="config_mutation_prob" class="col-sm-4 control-label">Mutation probability</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control model-option" id="config_mutation_prob" name="mutation_prob" placeholder="Mutation probability">
+                                                </div>
+                                            </div>
+
+                                            <hr />
+
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-4 col-sm-8">
+                                                    <button type="submit" class="save-button btn btn-default">Save locally</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="application/javascript" data-main="/static/js/main.js" src="/static/js/lib/require.js"></script>
+</body>
+</html>

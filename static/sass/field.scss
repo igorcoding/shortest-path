@@ -1,0 +1,25 @@
+.field {
+
+    &__table {
+        margin: 0 auto;
+
+        &__row {
+            //border-color: #337ab7 !important;
+            height: 40px;
+
+            td {
+                //border-color: #337ab7 !important;
+            }
+        }
+    }
+
+    &__conf {
+        &__label {
+
+            .pagination {
+                margin: 0 auto;
+            }
+
+        }
+    }
+}
