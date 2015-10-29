@@ -26,6 +26,8 @@ define(function(require) {
         enableEdit: true,
         id: null,
         extraClasses: [],
+        editBottom: false,
+        diagEdit: false,
 
         initialize: function(size, $root, extraClasses) {
             $root = $root || $(document);
@@ -35,11 +37,20 @@ define(function(require) {
 
             this._jqFind('ELEMS', $root);
             this.createField(true);
-            this.bindEvents();
         },
 
         bindEvents: function() {
             var self = this;
+            this.$inputs.on('change keyup paste input', function() {
+                var $this = $(this);
+                var $td = $this.parents('td');
+                var value = $this.val();
+                if (!self.editBottom) {
+                    var i = $td.data('row');
+                    var j = $td.data('col');
+                    $(self.$inputs[j * self.size + i]).val(value);
+                }
+            });
         },
 
         createField: function(createTable) {
@@ -84,9 +95,9 @@ define(function(require) {
                     });
 
                     var $td = $('<td></td>');
-                    $td.data('row', i);
-                    $td.data('col', j);
-                    $td.data('value', 0);
+                    $td.attr('data-row', i);
+                    $td.attr('data-col', j);
+                    $td.attr('data-value', 0);
                     $td.append($input);
                     $row.append($td);
                 }
@@ -94,8 +105,10 @@ define(function(require) {
             }
             //this.$table.css({width: (this.cols * 40) + 'px'});
 
+            this.$root.html(this.$table);
             this.$rows = this.$table.find('.' + this.CLASSES.row);
             this.$cells = this.$rows.find('td');
+
             this.$inputs = this.$rows.find('input');
 
             //this.$cells.click(function() {
@@ -103,8 +116,9 @@ define(function(require) {
             //        self.changeCellValue($(this));
             //    }
             //});
-
-            this.$root.html(this.$table);
+            this.triggerButtomEdit(this.editBottom);
+            this.triggerDiagEdit(this.diagEdit);
+            this.bindEvents();
         },
 
         getValues: function() {
@@ -114,6 +128,38 @@ define(function(require) {
                 values.push($input.val() || 0);
             });
             return values;
+        },
+
+        triggerButtomEdit: function(edit) {
+            this.editBottom = edit;
+            for (var row = 0; row < this.size; row++) {
+                for (var col = 0; col < this.size; col++) {
+                    if (col < row) {
+                        var $el = $(this.$inputs[row * this.size + col]);
+                        if (edit) {
+                            $el.prop('disabled', false);
+                        } else {
+                            $el.prop('disabled', true);
+                        }
+                    }
+                }
+            }
+        },
+
+        triggerDiagEdit: function(edit) {
+            this.diagEdit = edit;
+            for (var row = 0; row < this.size; row++) {
+                for (var col = 0; col < this.size; col++) {
+                    if (col == row) {
+                        var $el = $(this.$inputs[row * this.size + col]);
+                        if (edit) {
+                            $el.prop('disabled', false);
+                        } else {
+                            $el.prop('disabled', true);
+                        }
+                    }
+                }
+            }
         }
 
         //changeCellValue: function($cell, value) {

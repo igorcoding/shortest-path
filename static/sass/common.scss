@@ -9,7 +9,6 @@ html, body {
 .workplace-window {
     &__content {
         margin-top: 20px;
-        overflow-x: auto;
 
     }
 }
@@ -79,6 +78,14 @@ html, body {
 
 .main-page {
     display: block;
+
+    &__field {
+        overflow-x: auto;
+    }
+
+    &__controls {
+        margin-left: 50px;
+    }
 }
 
 .report-table-wrapper {

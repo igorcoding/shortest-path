@@ -17,6 +17,8 @@ define(function(require) {
             this.modelConfig = modelConfig;
             this.$mainPageField = $root.find('.main-page__field');
             this.$mainPageGenomes = $root.find('.main-page__genomes');
+            this.$editBottomCheckbox = $root.find('#edit_bottom_checkbox');
+            this.$editDiagonalCheckbox = $root.find('#edit_diagonal_checkbox');
             this.$initButton = $root.find('.init-button');
             this.$stepButton = $root.find('.step-button');
             this.$burstButton = $root.find('.burst-button');
@@ -34,18 +36,18 @@ define(function(require) {
         bindEvents: function() {
             var self = this;
 
+            this.$editBottomCheckbox.change(function() {
+                var isChecked = $(this).is(":checked");
+                self.field.triggerButtomEdit(isChecked);
+            });
+
+            this.$editDiagonalCheckbox.change(function() {
+                var isChecked = $(this).is(":checked");
+                self.field.triggerDiagEdit(isChecked);
+            });
+
             this.$initButton.click(function() {
                 var $this = $(this);
-
-                //self.onStepPerformed({
-                //    genomes: [
-                //        { genome: JSON.stringify([2,5,6]), fitness: 0.6 },
-                //        { genome: JSON.stringify([]), fitness: 0.6 },
-                //        { genome: JSON.stringify([]), fitness: 0.6 },
-                //        { genome: JSON.stringify([]), fitness: 0.6 }
-                //    ]
-                //});
-
                 $this.attr("disabled", true);
                 Client.init(self.modelConfig.getConfig(), self.getFieldValues(), function(err, resp) {
                     $this.attr("disabled", false);
