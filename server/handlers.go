@@ -12,6 +12,7 @@ func (self *server) setupHandlers() {
 	self.serverMux.HandleFunc("/", self.indexHandler)
 	self.serverMux.HandleFunc("/api/init", self.apiInit)
 	self.serverMux.HandleFunc("/api/step", self.apiStep)
+	self.serverMux.HandleFunc("/api/burst", self.apiBurst)
 }
 
 func (self *server) indexHandler(w http.ResponseWriter, r *http.Request) {
@@ -72,7 +73,7 @@ func (self *server) apiInit(w http.ResponseWriter, r *http.Request) {
 	self.apiOkResponse(w, &resp)
 }
 
-func (self *server) apiStep(w http.ResponseWriter, r *http.Request) {
+func (self *server) algoStep(w http.ResponseWriter, r *http.Request, steps int) {
 	if (!self.requireMethods(w, r, []string{"POST"})) { return }
 
 	session, err := self.getSession(w, r)
@@ -115,7 +116,18 @@ func (self *server) apiStep(w http.ResponseWriter, r *http.Request) {
 		gPath.Conf.Graph = conf.Graph
 	}
 
+	for i := 0; i < steps - 1; i++ {
+		_, err := gPath.Step()
+		if (err != nil) {
+			resp := ApiResponse{
+				ErrorStr: err.Error(),
+			}
+			self.apiErrorResponse(w, &resp, 500)
+			return
+		}
+	}
 	genomes, err := gPath.Step()
+
 	if err != nil {
 		resp := ApiResponse{
 			ErrorStr: "Error while step(): " + err.Error(),
@@ -150,4 +162,13 @@ func (self *server) apiStep(w http.ResponseWriter, r *http.Request) {
 		Data: data,
 	}
 	self.apiOkResponse(w, &resp)
+}
+
+
+func (self *server) apiStep(w http.ResponseWriter, r *http.Request) {
+	self.algoStep(w, r, 1)
+}
+
+func (self *server) apiBurst(w http.ResponseWriter, r *http.Request) {
+	self.algoStep(w, r, 10)
 }
